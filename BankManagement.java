@@ -35,13 +35,13 @@ class CreditCard extends BankCardImpl {
     }
 
     @Override
-    public synchronized void deposit(double amount) {
+    public  void deposit(double amount) {
         balance += amount;
         System.out.println("Deposited to Credit Card. New balance: " + balance);
     }
 
     @Override
-    public synchronized void withdraw(double amount) throws InsufficientBalanceException {
+    public void withdraw(double amount) throws InsufficientBalanceException {
         if (balance + creditLimit >= amount) {
             balance -= amount;
             System.out.println("Withdrawn from Credit Card. Remaining balance: " + balance);
@@ -126,7 +126,7 @@ public class BankManagement {
             System.out.println("Thread interrupted: " + e.getMessage());
         }
 
-        // Summing up balances using streams
+        //  using streams
         double totalBalance = cardList.stream()
                 .mapToDouble(BankCardImpl::getBalance)
                 .sum();
